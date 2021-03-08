@@ -25,8 +25,23 @@
     -webkit-box-orient: vertical;
 }
 
+.link-hover{
+    position: relative;
+}
+
 .link-hover:hover{
     text-decoration: underline;
+}
+
+.link-hover::after{
+    content: '';
+    width: 0;
+    height: 0;
+    border: solid 8px transparent;
+    position: absolute;
+    top: 5px;
+    left: -12px;
+    border-left-color: #000;
 }
 
 input[type="search"]{
