@@ -3,8 +3,10 @@
 const btn = document.querySelector('form')
 const wrap = document.querySelector('.anime-list-wrapper')
 const topAnime = document.querySelector('.top-anime')
+const topMovie = document.querySelector('.top-movie')
 
 window.addEventListener('load', async function(){
+    // TOP AIRING ANIME
 	const topAnimeData = await fetch("https://api.jikan.moe/v3/top/anime/1/airing")
 	const topAnimeDataRes = await topAnimeData.json()
 
@@ -13,6 +15,20 @@ window.addEventListener('load', async function(){
             <li class="mb-2 link-hover">
                 <a href="${topAnimeDataRes.top[i].url}" target="_blank" class="text-dark text-decoration-none">
                     ${topAnimeDataRes.top[i].title}
+                </a>      
+            </li>   
+        `
+    }	
+
+    // TOP ANIME MOVIE
+    const popularAnimeMovieData = await fetch("https://api.jikan.moe/v3/top/anime/1/movie")
+    const popularAnimeMovieDataRes = await popularAnimeMovieData.json()
+
+    for(let i = 0; i <= 10; i++){
+        topMovie.innerHTML += `
+            <li class="mb-2 link-hover">
+                <a href="${popularAnimeMovieDataRes.top[i].url}" target="_blank" class="text-dark text-decoration-none">
+                    ${popularAnimeMovieDataRes.top[i].title}
                 </a>      
             </li>   
         `
@@ -43,6 +59,10 @@ window.addEventListener('load', async function(){
         </div>
     `
     })  
+
+   
+    
+    
 })
 
 const searchInput = document.querySelector('input[type="search"]')
@@ -78,7 +98,5 @@ btn.addEventListener('submit', async function(e){
                 </div>
             </div>
 	`
-    });
-	
+    });	
 })
- 
